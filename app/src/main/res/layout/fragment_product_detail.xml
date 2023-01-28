@@ -1,0 +1,99 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="product"
+            type="com.example.wingsgroup.data.domain.Product" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="?attr/actionBarSize">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/left_guide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="16dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/right_guide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="16dp" />
+
+            <ImageView
+                android:id="@+id/product_img"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:scaleType="centerInside"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@tools:sample/backgrounds/scenic" />
+
+            <TextView
+                android:id="@+id/product_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@{product.name}"
+                android:fontFamily="@font/roboto_bold"
+                android:textAppearance="?attr/textAppearanceSubtitle1"
+                app:layout_constraintEnd_toEndOf="@id/right_guide"
+                app:layout_constraintStart_toStartOf="@id/left_guide"
+                app:layout_constraintTop_toBottomOf="@id/product_img"
+                tools:text="@tools:sample/lorem"/>
+
+            <TextView
+                android:id="@+id/product_price"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@{product.printPrice()}"
+                android:fontFamily="@font/roboto"
+                android:textAppearance="?attr/textAppearanceSubtitle1"
+                app:layout_constraintEnd_toEndOf="@id/right_guide"
+                app:layout_constraintStart_toStartOf="@id/left_guide"
+                app:layout_constraintTop_toBottomOf="@id/product_name"
+                tools:text="@tools:sample/lorem"/>
+
+            <TextView
+                android:id="@+id/product_discount"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@{product.printDiscount()}"
+                android:fontFamily="@font/roboto"
+                android:textAppearance="?attr/textAppearanceSubtitle1"
+                app:layout_constraintEnd_toEndOf="@id/right_guide"
+                app:layout_constraintStart_toStartOf="@id/left_guide"
+                app:layout_constraintTop_toBottomOf="@id/product_price"
+                tools:text="@tools:sample/lorem"/>
+
+            <TextView
+                android:id="@+id/product_detail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@{product.printDetail()}"
+                android:fontFamily="@font/roboto"
+                android:textAppearance="?attr/textAppearanceSubtitle1"
+                app:layout_constraintEnd_toEndOf="@id/right_guide"
+                app:layout_constraintStart_toStartOf="@id/left_guide"
+                app:layout_constraintTop_toBottomOf="@id/product_discount"
+                tools:text="@tools:sample/lorem"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

@@ -18,4 +18,10 @@ class ProductDataSource {
         WINGS_PRODUCTS.add(Product("COFTCP", "Top Coffee Cappuccino", 1500.0, 0.0, "25 gr", R.drawable.top_coffee_c))
         WINGS_PRODUCTS.add(Product("COFTMC", "Top Coffee Mocca", 1500.0, 0.0, "25 gr", R.drawable.top_coffee_mocca))
     }
+
+    fun getProduct(): List<Product> = WINGS_PRODUCTS.toList()
+
+    fun findProduct(code: String): Product {
+        return WINGS_PRODUCTS.first { it.code == code }
+    }
 }

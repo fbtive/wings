@@ -59,12 +59,10 @@ class MainActivity : AppCompatActivity() {
             when(nd.id) {
                 R.id.loginFragment -> {
                     binding.mainAppbar.visibility = View.GONE
-//                    supportActionBar?.hide()
-//                    (binding.mainAppbar.layoutParams as AppBarLayout.LayoutParams).scrollFlags = 0
                     binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
                 }
                 R.id.registerFragment -> {
-//                    binding.mainAppbar.visibility = View.GONE
+                    binding.mainAppbar.visibility = View.GONE
                     binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
                 }
                 else -> {
