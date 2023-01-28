@@ -13,5 +13,23 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <item name="android:windowActivityTransitions">true</item>
         <!-- Customize your theme here. -->
+        <item name="android:autofilledHighlight" tools:targetApi="o">@android:color/transparent</item>
+        <item name="android:fontFamily">@font/roboto</item>
+    </style>
+
+    <style name="Theme.Wingsgroup.TitleHero" parent="">
+        <item name="android:fontFamily">@font/roboto_bold</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textAppearance">?attr/textAppearanceHeadline5</item>
+    </style>
+    <style name="Theme.Wingsgroup.TitleDescription" parent="">
+        <item name="android:textColor">@color/colorGrey</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textAppearance">?attr/textAppearanceSubtitle1</item>
+    </style>
+    <style name="Theme.Wingsgroup.TitleSmall" parent="">
+        <item name="android:textColor">@color/colorGrey</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textAppearance">?attr/textAppearanceSubtitle2</item>
     </style>
 </resources>

@@ -3,6 +3,7 @@ package com.example.wingsgroup.auth
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.preference.PreferenceManager
+import com.example.wingsgroup.data.local.UserModel
 
 object WingsAuth {
     var username: String? = null
@@ -19,6 +20,26 @@ object WingsAuth {
         editor.putString(LOGIN_USERNAME, username)
         editor.putString(LOGIN_EMAIL, email)
         editor.putString(LOGIN_PHONE, phone)
+        editor.commit()
+    }
+
+    fun authenticate(context: Context, user: UserModel) {
+        username = user.username
+        email = user.email
+        phone = user.phone
+        persist(context, user.username, user.email, user.phone)
+    }
+
+    fun logout(context: Context) {
+        username = null
+        email = null
+        phone = null
+
+        val preferences: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+        val editor: SharedPreferences.Editor = preferences.edit()
+        editor.putString(LOGIN_USERNAME, null)
+        editor.putString(LOGIN_EMAIL, null)
+        editor.putString(LOGIN_PHONE, null)
         editor.commit()
     }
 

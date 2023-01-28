@@ -2,11 +2,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="model"
+            type="com.example.wingsgroup.auth.RegistrationForm" />
+        <variable
+            name="handler"
+            type="com.example.wingsgroup.auth.RegistrationHandler"/>
+    </data>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
-        tools:context=".auth.LoginFragment">
+        tools:context=".auth.RegisterFragment">
 
         <LinearLayout
             android:id="@+id/banner_container"
@@ -49,12 +58,36 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         style="@style/Theme.Wingsgroup.TitleHero"
-                        android:text="@string/welcome" />
-                    <TextView
+                        android:text="@string/register_form" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/name_field"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        style="@style/Theme.Wingsgroup.TitleDescription"
-                        android:text="@string/please_login" />
+                        android:hint="@string/form_username"
+                        app:errorEnabled="true"
+                        app:boxStrokeColor="@color/colorGrey"
+                        app:hintTextColor="@color/colorGrey"
+                        app:boxStrokeWidth="1dp"
+                        app:boxCornerRadiusTopStart="8dp"
+                        app:boxCornerRadiusTopEnd="8dp"
+                        app:boxCornerRadiusBottomStart="8dp"
+                        app:boxCornerRadiusBottomEnd="8dp"
+                        app:startIconDrawable="@drawable/baseline_person"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginTop="24dp"
+                        >
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textCursorDrawable="@null"
+                            android:text="@={model.username}"
+                            android:afterTextChanged="@{(editable) -> handler.usernameValidator(editable.toString())}"
+                            />
+
+                    </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/email_field"
@@ -73,13 +106,14 @@
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_marginStart="16dp"
                         android:layout_marginEnd="16dp"
-                        android:layout_marginTop="24dp"
                         >
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="textEmailAddress"
-                            android:textCursorDrawable="@null"/>
+                            android:textCursorDrawable="@null"
+                            android:text="@={model.email}"
+                            android:afterTextChanged="@{(editable) -> handler.emailValidator(editable.toString())}"/>
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -106,31 +140,76 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="textPassword"
-                            android:textCursorDrawable="@null"/>
+                            android:textCursorDrawable="@null"
+                            android:text="@={model.password}"
+                            android:afterTextChanged="@{(editable) -> handler.passwordValidator(editable.toString())}"/>
 
                     </com.google.android.material.textfield.TextInputLayout>
 
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/phone_field"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/form_phone"
+                        app:errorEnabled="true"
+                        app:boxStrokeColor="@color/colorGrey"
+                        app:hintTextColor="@color/colorGrey"
+                        app:boxStrokeWidth="1dp"
+                        app:boxCornerRadiusTopStart="8dp"
+                        app:boxCornerRadiusTopEnd="8dp"
+                        app:boxCornerRadiusBottomStart="8dp"
+                        app:boxCornerRadiusBottomEnd="8dp"
+                        app:startIconDrawable="@drawable/baseline_phone"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        >
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="phone|number"
+                            android:textCursorDrawable="@null"
+                            android:text="@={model.phone}"
+                            android:afterTextChanged="@{(editable) -> handler.phoneValidator(editable.toString())}"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/register_btn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/register"
+                        android:textColor="@android:color/white"
+                        android:backgroundTint="?attr/colorPrimaryVariant"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginTop="40dp"
+                        />
+
+
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp">
 
                         <TextView
                             android:id="@+id/login_description"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/register_description"
+                            android:text="@string/login_description"
                             style="@style/Theme.Wingsgroup.TitleSmall"
-                            app:layout_constraintEnd_toStartOf="@+id/signup_btn"
+                            app:layout_constraintEnd_toStartOf="@+id/signin_btn"
                             app:layout_constraintHorizontal_bias="0.5"
                             app:layout_constraintHorizontal_chainStyle="packed"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
-                            android:id="@+id/signup_btn"
+                            android:id="@+id/signin_btn"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/sign_up"
+                            android:text="@string/sign_in"
                             style="@style/Theme.Wingsgroup.TitleSmall"
                             android:textColor="?attr/colorPrimaryVariant"
                             android:fontFamily="@font/roboto_bold"
@@ -140,22 +219,11 @@
                             app:layout_constraintStart_toEndOf="@+id/login_description"
                             app:layout_constraintTop_toTopOf="parent" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/login_btn"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/login"
-                        android:textColor="@android:color/white"
-                        android:backgroundTint="?attr/colorPrimaryVariant"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginEnd="16dp"
-                        android:layout_marginTop="40dp"
-                        />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
         </LinearLayout>
 
     </ScrollView>
+
 </layout>

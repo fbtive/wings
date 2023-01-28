@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/round_home"
+        android:title="@string/menu_home"/>
+    <item
+        android:id="@+id/transaction_dest"
+        android:icon="@drawable/baseline_payment"
+        android:title="@string/menu_transaction"/>
+    <item
+        android:id="@+id/logout_menu"
+        android:icon="@drawable/baseline_logout"
+        android:title="@string/menu_logout"/>
+</menu>

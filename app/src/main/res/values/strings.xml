@@ -1,5 +1,25 @@
 <resources>
     <string name="app_name">Wings</string>
-    
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="welcome">Welcome Back</string>
+    <string name="please_login">Please log-in to continue..</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_cart">Keranjang</string>
+    <string name="menu_transaction">Transaksi</string>
+    <string name="menu_logout">Keluar</string>
+
+    <string name="form_username">Full Name</string>
+    <string name="form_email">E-Mail</string>
+    <string name="form_password">Password</string>
+    <string name="form_phone">Phone Number</string>
+    <string name="register_form">Register Form</string>
+    <string name="register_description">Don\'t have an account\?</string>
+    <string name="login_description">have an account\?</string>
+    <string name="sign_in">Log In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="login">Log In</string>
+    <string name="register">Register</string>
+
 </resources>

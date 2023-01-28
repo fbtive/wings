@@ -22,7 +22,7 @@ class SplashActivity : AppCompatActivity() {
 //        val bundle = ActivityOptions.makeSceneTransitionAnimation(this).toBundle()
         lifecycleScope.launch {
             WingsAuth.getLocalData(applicationContext)
-            delay(1400)
+            delay(1600)
             startActivity(intent)
             finish()
         }
