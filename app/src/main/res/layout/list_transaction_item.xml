@@ -1,0 +1,56 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="transaction"
+            type="com.example.wingsgroup.data.local.TransactionModel" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        app:cardElevation="6dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{transaction.printCode()}"
+                    android:fontFamily="@font/roboto_bold"
+                    android:textAppearance="?attr/textAppearanceSubtitle1"
+                    tools:text="@tools:sample/lorem"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{transaction.printTotal()}"
+                    android:fontFamily="@font/roboto"
+                    android:textAppearance="?attr/textAppearanceSubtitle2"
+                    tools:text="@tools:sample/lorem"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{transaction.printDate()}"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/colorGrey"
+                    android:fontFamily="@font/roboto"
+                    android:textAppearance="?attr/textAppearanceSubtitle2"
+                    tools:text="@tools:sample/lorem"/>
+
+
+            </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>

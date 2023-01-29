@@ -8,7 +8,7 @@ import androidx.room.RoomDatabase
 
 @Database(
     entities = [UserModel::class, ProductModel::class, CartModel::class, TransactionModel::class, TransactionDetailModel::class],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 abstract class WingsDatabase: RoomDatabase() {

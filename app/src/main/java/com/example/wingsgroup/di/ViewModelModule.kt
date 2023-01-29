@@ -2,8 +2,11 @@ package com.example.wingsgroup.di
 
 import android.content.Context
 import com.example.wingsgroup.data.ProductRepository
+import com.example.wingsgroup.data.TransactionRepository
 import com.example.wingsgroup.data.UserRepository
 import com.example.wingsgroup.data.local.CartDao
+import com.example.wingsgroup.data.local.TransactionDao
+import com.example.wingsgroup.data.local.TransactionDetailDao
 import com.example.wingsgroup.data.local.UserDao
 import com.example.wingsgroup.data.remote.ProductDataSource
 import dagger.Module
@@ -27,4 +30,11 @@ class ViewModelModule {
     @Provides
     @ViewModelScoped
     fun provideProductRepository(cartDao: CartDao): ProductRepository = ProductRepository(cartDao, ProductDataSource())
+
+    @Provides
+    @ViewModelScoped
+    fun provideTransactionRepository(
+        transactionDao: TransactionDao,
+        transactionDetailDao: TransactionDetailDao
+    ) : TransactionRepository = TransactionRepository(transactionDao, transactionDetailDao)
 }

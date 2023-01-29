@@ -29,7 +29,8 @@
     <fragment
         android:id="@+id/registerFragment"
         android:name="com.example.wingsgroup.auth.RegisterFragment"
-        android:label="RegisterFragment" >
+        android:label="RegisterFragment"
+        tools:layout="@layout/fragment_register">
         <action
             android:id="@+id/action_registerFragment_to_loginFragment"
             app:destination="@id/loginFragment"
@@ -48,4 +49,14 @@
             android:name="code"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.example.wingsgroup.cart.CartFragment"
+        android:label="Keranjang Belanja"
+        tools:layout="@layout/fragment_cart"/>
+    <fragment
+        android:id="@+id/transactionFragment"
+        android:name="com.example.wingsgroup.transactions.TransactionFragment"
+        android:label="Riwayat Transaksi"
+        tools:layout="@layout/fragment_transaction" />
 </navigation>

@@ -9,10 +9,12 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.activity.OnBackPressedCallback
 import androidx.core.view.doOnPreDraw
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.wingsgroup.MainViewModel
 import com.example.wingsgroup.R
 import com.example.wingsgroup.auth.WingsAuth
 import com.example.wingsgroup.databinding.FragmentHomeBinding
@@ -26,6 +28,7 @@ class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var adapter: ProductAdapter
     private val viewModel: ProductViewModel by viewModels()
+    private val activityViewModel: MainViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,6 +39,7 @@ class HomeFragment : Fragment() {
 
         sharedElementReturnTransition = TransitionInflater.from(requireContext()).inflateTransition(android.R.transition.move)
 
+        activityViewModel.refreshCartCount()
         setupRecyclerView()
         setupObserver()
         setupBackPress()

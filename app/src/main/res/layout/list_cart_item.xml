@@ -1,0 +1,85 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="cart"
+            type="com.example.wingsgroup.data.domain.Cart" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        app:cardElevation="6dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:orientation="horizontal"
+            android:baselineAligned="true"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:id="@+id/cart_img"
+                android:layout_width="98dp"
+                android:layout_height="98dp"
+                android:layout_marginBottom="8dp"
+                tools:src="@tools:sample/backgrounds/scenic"
+                tools:scaleType="centerCrop"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:paddingStart="8dp">
+
+                <TextView
+                    android:id="@+id/product_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{cart.name}"
+                    android:fontFamily="@font/roboto_bold"
+                    android:textAppearance="?attr/textAppearanceSubtitle1"
+                    tools:text="@tools:sample/lorem"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{cart.printPrice()}"
+                    android:fontFamily="@font/roboto"
+                    android:textAppearance="?attr/textAppearanceSubtitle2"
+                    tools:text="@tools:sample/lorem"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{cart.printJumlah()}"
+                    android:fontFamily="@font/roboto"
+                    android:textAppearance="?attr/textAppearanceSubtitle2"
+                    tools:text="@tools:sample/lorem"/>
+
+                <TextView
+                    android:id="@+id/product_total"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{cart.printTotal()}"
+                    android:fontFamily="@font/roboto_bold"
+                    android:textAppearance="?attr/textAppearanceSubtitle2"
+                    android:layout_marginTop="16dp"
+                    tools:text="@tools:sample/lorem"/>
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/delete_btn"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:src="@drawable/baseline_delete"/>
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>

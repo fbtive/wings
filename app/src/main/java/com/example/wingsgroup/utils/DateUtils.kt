@@ -16,3 +16,7 @@ fun convertLongToDateString(systemTime: Long): String {
     return SimpleDateFormat("EEEE MMM-dd-yyyy' Time: 'HH:mm")
         .format(systemTime).toString()
 }
+
+fun convertLongToDateFormat(systemTime: Long, format: String) : String {
+    return SimpleDateFormat(format).format(systemTime).toString()
+}

@@ -25,6 +25,8 @@ class LoginViewModel @Inject constructor(
     val errorEvent: LiveData<Event<String>>
         get() = _errorEvent
 
+    val allUser = repository.getAllUser()
+
     fun loginUser(email: String, password: String) {
         viewModelScope.launch {
             val result = repository.authenticate(email, password)
@@ -37,6 +39,10 @@ class LoginViewModel @Inject constructor(
                 _errorEvent.value = Event(result.exception.message.toString())
             }
         }
+    }
+
+    fun checkAllUser() {
+
     }
 
 }

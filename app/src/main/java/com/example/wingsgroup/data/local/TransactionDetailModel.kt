@@ -8,10 +8,6 @@ import androidx.room.PrimaryKey
 data class TransactionDetailModel (
     @PrimaryKey(autoGenerate = true)
     val id: Long,
-    @ColumnInfo(name = "doc_code")
-    val documentCode: String = "TRX",
-    @ColumnInfo(name = "doc_number")
-    val documentNumber: Long,
     @ColumnInfo(name = "product_code")
     val product_code: String,
     val name: String,
@@ -20,5 +16,9 @@ data class TransactionDetailModel (
     val unit: String,
     @ColumnInfo(name = "sub_total")
     val total: Double,
-    val currency: String
+    val currency: String,
+    @ColumnInfo(name = "doc_number")
+    val documentNumber: Long,
+    @ColumnInfo(name = "doc_code")
+    val documentCode: String = "TRX",
 )

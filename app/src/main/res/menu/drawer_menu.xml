@@ -5,7 +5,7 @@
         android:icon="@drawable/round_home"
         android:title="@string/menu_home"/>
     <item
-        android:id="@+id/transaction_dest"
+        android:id="@+id/transactionFragment"
         android:icon="@drawable/baseline_payment"
         android:title="@string/menu_transaction"/>
     <item

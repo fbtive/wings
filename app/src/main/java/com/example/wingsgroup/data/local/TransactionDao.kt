@@ -9,7 +9,7 @@ import androidx.room.Query
 @Dao
 interface TransactionDao {
     @Insert
-    suspend fun insert(transaction: TransactionModel)
+    suspend fun insert(transaction: TransactionModel) : Long
 
     @Delete
     suspend fun delete(transaction: TransactionModel)

@@ -6,6 +6,9 @@
         <variable
             name="product"
             type="com.example.wingsgroup.data.domain.Product" />
+        <variable
+            name="viewModel"
+            type="com.example.wingsgroup.products.ProductDetailViewModel" />
     </data>
 
     <ScrollView
@@ -94,6 +97,118 @@
                 app:layout_constraintStart_toStartOf="@id/left_guide"
                 app:layout_constraintTop_toBottomOf="@id/product_discount"
                 tools:text="@tools:sample/lorem"/>
+
+            <LinearLayout
+                android:id="@+id/qty_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical|end"
+                android:orientation="horizontal"
+                android:baselineAligned="true"
+                android:layout_marginTop="16dp"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/product_detail">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/roboto_bold"
+                    android:paddingVertical="3dp"
+                    android:text="@string/qty"
+                    android:textAppearance="?attr/textAppearanceSubtitle2" />
+
+                <ImageView
+                    android:id="@+id/minus_btn"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:onClick="@{() -> viewModel.minQty(product)}"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:src="@drawable/baseline_remove_24"
+                    app:tint="@color/colorAccent" />
+
+                <TextView
+                    android:id="@+id/qty_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="48dp"
+                    android:background="@drawable/corner_stroke_bg"
+                    android:fontFamily="@font/roboto"
+                    android:text="@{viewModel.qty.toString()}"
+                    android:paddingVertical="3dp"
+                    android:textAlignment="center"
+                    android:textAppearance="?attr/textAppearanceSubtitle2" />
+
+                <ImageView
+                    android:id="@+id/plus_btn"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_marginStart="8dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:onClick="@{() -> viewModel.addQty(product)}"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:src="@drawable/baseline_add"
+                    app:tint="@color/colorAccent" />
+
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/qty_content"
+                app:layout_constraintVertical_bias="1.0">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/sub_total"
+                        android:fontFamily="@font/roboto_bold"
+                        android:textAppearance="?attr/textAppearanceSubtitle2"/>
+                    <TextView
+                        android:id="@+id/subtotal_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="@{viewModel.subtotal}"
+                        android:fontFamily="@font/roboto"
+                        android:textAppearance="?attr/textAppearanceSubtitle2"/>
+
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/buy_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:backgroundTint="?attr/colorPrimaryVariant"
+                    android:text="@string/add"
+                    android:textColor="@android:color/white"
+                    android:onClick="@{() -> viewModel.addCart(product)}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.5" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </layout>

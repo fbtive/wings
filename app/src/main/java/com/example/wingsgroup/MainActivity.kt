@@ -3,14 +3,17 @@ package com.example.wingsgroup
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.transition.Slide
 import android.view.Menu
 import android.view.View
 import android.view.Window
+import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
+import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
@@ -42,6 +45,7 @@ class MainActivity : AppCompatActivity() {
 
         setupToolbarAndNavigation()
         checkAuth()
+        setupObserver()
     }
 
     private fun setupToolbarAndNavigation() {
@@ -73,23 +77,52 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.navDrawer.setNavigationItemSelectedListener {
-            val id = it.itemId
-            if(id == R.id.logout_menu) {
-                WingsAuth.logout(this)
-                binding.mainAppbar.visibility = View.GONE
-                navController.navigate(R.id.loginFragment)
-                Timber.i("${WingsAuth.username}, ${WingsAuth.email}, ${WingsAuth.phone}")
+            when(it.itemId) {
+                R.id.homeFragment -> {
+                    binding.drawerLayout.close()
+                    if(navController.currentDestination?.id != R.id.homeFragment) {
+                        navController.navigate(R.id.homeFragment)
+                    }
+                }
+                R.id.transactionFragment -> {
+                    binding.drawerLayout.close()
+                    if(navController.currentDestination?.id != R.id.transactionFragment) {
+                        navController.navigate(R.id.transactionFragment)
+                    }
+                }
+                R.id.logout_menu -> {
+                    WingsAuth.logout(this)
+                    binding.mainAppbar.visibility = View.GONE
+                    navController.navigate(R.id.loginFragment)
+                    Timber.i("${WingsAuth.username}, ${WingsAuth.email}, ${WingsAuth.phone}")
+                }
             }
 
             true
         }
     }
 
-//    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-//        menuInflater.inflate(R.menu.main_menu, menu);
-//
-//        return true
-//    }
+    fun setupObserver() {
+        viewModel.cartCount.observe(this) {
+            Timber.i("cart count is $it")
+            binding.mainToolbar.run {
+                val menuItem = menu.findItem(R.id.action_cart)
+                val actionView = menuItem.actionView
+
+                val textCount = actionView?.findViewById<TextView>(R.id.cart_badge)
+
+                if(this.visibility != View.GONE) {
+                    textCount?.text = it?.toString() ?: "0"
+                }
+
+                actionView?.setOnClickListener {
+                    if(navController.currentDestination?.id != R.id.cartFragment) {
+                        navController.navigate(R.id.cartFragment)
+                    }
+                }
+            }
+        }
+    }
 
     override fun onSupportNavigateUp(): Boolean {
         return NavigationUI.navigateUp(navController, binding.drawerLayout)
